@@ -10,143 +10,141 @@
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
     body { font-family: 'Plus Jakarta Sans', sans-serif; }
+    .fade-in { animation: fadeIn 0.25s ease-in-out forwards; }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
   </style>
 </head>
-<body class="bg-slate-50 text-slate-800 antialiased">
+<body class="bg-slate-50 text-slate-800 antialiased selection:bg-emerald-200">
 
   <!-- TOP BAR INFO -->
   <div class="bg-slate-900 text-slate-300 text-xs py-2 px-4 border-b border-slate-800">
     <div class="max-w-7xl mx-auto flex flex-wrap justify-between items-center gap-2">
       <p class="flex items-center gap-2">
-        <span class="inline-block w-2 h-2 rounded-full bg-emerald-400"></span>
-        Indeks Pasokan Panen Nasional: Stok Cabai & Bawang Terbuka untuk Kontrak Q4
+        <span class="inline-block w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
+        Sistem Bursa Pasokan Panen Aktif: Transaksi Bebas Biaya Makelar
       </p>
       <div class="flex items-center gap-4">
-        <a href="#" class="hover:text-white transition">Pusat Bantuan</a>
-        <a href="#" class="hover:text-white transition">Hubungi Sales B2B</a>
+        <button onclick="scrollToSection('kontrak')" class="hover:text-white transition">Standar QC</button>
+        <button onclick="alert('Hubungi Helpdesk Operasional via WhatsApp: 0812-3456-7890')" class="hover:text-white transition">Bantuan Lapangan</button>
       </div>
     </div>
   </div>
 
   <!-- MAIN NAVIGATION -->
-  <nav class="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-slate-200">
+  <nav class="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-slate-200 shadow-sm">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-18 flex items-center justify-between py-3">
       <!-- Logo -->
-      <div class="flex items-center gap-3">
+      <a href="#" class="flex items-center gap-3">
         <div class="w-9 h-9 rounded-lg bg-emerald-700 flex items-center justify-center text-white font-black text-lg shadow-sm">
           TH
         </div>
         <div>
           <span class="text-xl font-bold tracking-tight text-slate-900">Tani<span class="text-emerald-700">Hubung</span></span>
-          <span class="hidden sm:inline-block ml-2 text-[11px] font-semibold uppercase tracking-wider bg-emerald-50 text-emerald-800 px-2 py-0.5 rounded">B2B Exchange</span>
+          <span class="hidden sm:inline-block ml-2 text-[11px] font-semibold uppercase tracking-wider bg-emerald-50 text-emerald-800 px-2 py-0.5 rounded">B2B Agro Hub</span>
         </div>
-      </div>
+      </a>
 
       <!-- Links -->
       <div class="hidden md:flex items-center gap-8 text-sm font-medium text-slate-600">
-        <a href="#kategori" class="hover:text-emerald-700 transition">Komoditas</a>
-        <a href="#live-supply" class="hover:text-emerald-700 transition">Bursa Pasokan</a>
-        <a href="#kontrak" class="hover:text-emerald-700 transition">Program Pasokan Resto & Pabrik</a>
+        <button onclick="filterKategori('Semua')" class="hover:text-emerald-700 transition">Katalog Semua</button>
+        <button onclick="scrollToSection('live-supply')" class="hover:text-emerald-700 transition">Bursa Siap Panen</button>
+        <button onclick="scrollToSection('kontrak')" class="hover:text-emerald-700 transition">Skema Transaksi</button>
       </div>
 
       <!-- Actions -->
       <div class="flex items-center gap-3">
-        <button class="text-sm font-semibold text-slate-700 hover:text-emerald-700 px-3 py-2">
-          Masuk Akun
-        </button>
-        <button class="bg-emerald-700 hover:bg-emerald-800 text-white text-sm font-semibold px-4 py-2.5 rounded-lg shadow-sm transition">
-          Mulai Pasok Hasil Panen
+        <button onclick="bukaModalMitra()" class="bg-emerald-700 hover:bg-emerald-800 text-white text-sm font-semibold px-4 py-2.5 rounded-lg shadow-sm transition">
+          + Daftarkan Hasil Panen
         </button>
       </div>
     </div>
   </nav>
 
-  <!-- HERO SECTION (Split Screen Hero Layout) -->
+  <!-- HERO SECTION (Split Screen Layout) -->
   <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-10 pb-16">
     <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
       
-      <!-- Sisi Kiri: Headline & Value Proposition -->
+      <!-- Sisi Kiri -->
       <div class="lg:col-span-7 space-y-6">
         <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-50 border border-emerald-200 text-emerald-800 text-xs font-semibold">
           🌾 Rantai Pasok Terdesentralisasi
         </div>
-        <h1 class="text-4xl sm:text-5xl lg:text-5xl font-extrabold text-slate-950 tracking-tight leading-[1.2]">
-          Amankan Bahan Baku Segar Langsung dari Gapoktan & Kebun.
+        <h1 class="text-4xl sm:text-5xl font-extrabold text-slate-950 tracking-tight leading-[1.2]">
+          Amankan Bahan Baku Segar Langsung dari Gapoktan & Petani Lokal.
         </h1>
         <p class="text-base sm:text-lg text-slate-600 max-w-xl leading-relaxed">
-          TaniHubung menghubungkan petani skala kecil hingga koperasi pertanian secara langsung ke operasional Resto, UMKM Kuliner, Catering, dan Manufaktur Pengolahan Pangan.
+          TaniHubung menghubungkan petani skala kecil & koperasi tani langsung ke operasional Restoran, UMKM Kuliner, Catering, hingga Kebutuhan Pabrik Pengolahan Pangan.
         </p>
 
         <!-- Metric Counter -->
         <div class="grid grid-cols-3 gap-4 pt-4 border-t border-slate-200">
           <div>
-            <div class="text-2xl font-black text-slate-900">1.800+</div>
-            <div class="text-xs text-slate-500 font-medium">Petani Terdaftar</div>
+            <div class="text-2xl font-black text-slate-900" id="counter-petani">120+</div>
+            <div class="text-xs text-slate-500 font-medium">Mitra Kebun Terdata</div>
           </div>
           <div>
-            <div class="text-2xl font-black text-slate-900">140+ Ton</div>
-            <div class="text-xs text-slate-500 font-medium">Panen Tersalurkan</div>
+            <div class="text-2xl font-black text-slate-900" id="counter-stok">18,5 Ton</div>
+            <div class="text-xs text-slate-500 font-medium">Kapasitas Pasokan</div>
           </div>
           <div>
             <div class="text-2xl font-black text-slate-900">0%</div>
-            <div class="text-xs text-slate-500 font-medium">Biaya Tengkulak</div>
+            <div class="text-xs text-slate-500 font-medium">Potongan Spekulan</div>
           </div>
         </div>
       </div>
 
-      <!-- Sisi Kanan: Live Dispatch Request Box (Bukan sekadar filter search biasa) -->
+      <!-- Sisi Kanan: Live Dispatch Request Box -->
       <div class="lg:col-span-5 bg-white border border-slate-200/90 rounded-2xl p-6 shadow-xl shadow-slate-200/50">
         <div class="flex items-center justify-between pb-4 border-b border-slate-100">
-          <h2 class="font-bold text-slate-900 text-base">Permintaan Pasokan Panen</h2>
-          <span class="text-[11px] font-semibold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded">B2B Ready</span>
+          <h2 class="font-bold text-slate-900 text-base">Buat Permintaan Pasokan (PO)</h2>
+          <span class="text-[11px] font-semibold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded">Form Cepat</span>
         </div>
 
-        <form class="mt-4 space-y-4">
+        <form id="formPermintaanB2B" onsubmit="tanganiPermintaanB2B(event)" class="mt-4 space-y-4">
           <!-- Tipe Buyer -->
           <div>
-            <label class="block text-xs font-bold text-slate-600 mb-1">Profil Usaha Anda</label>
+            <label class="block text-xs font-bold text-slate-600 mb-1.5">Profil Usaha</label>
             <div class="grid grid-cols-3 gap-2 text-center text-xs font-semibold">
-              <label class="border border-emerald-600 bg-emerald-50/50 text-emerald-800 py-2 rounded-lg cursor-pointer">
-                <input type="radio" name="buyer_type" class="hidden" checked> Resto & Cafe
+              <label class="border border-slate-200 p-2 rounded-lg cursor-pointer hover:border-emerald-600 transition flex items-center justify-center gap-1.5">
+                <input type="radio" name="buyerType" value="Restoran / Cafe" checked class="accent-emerald-700"> Resto/Cafe
               </label>
-              <label class="border border-slate-200 text-slate-600 py-2 rounded-lg cursor-pointer hover:border-slate-300">
-                <input type="radio" name="buyer_type" class="hidden"> UMKM Olahan
+              <label class="border border-slate-200 p-2 rounded-lg cursor-pointer hover:border-emerald-600 transition flex items-center justify-center gap-1.5">
+                <input type="radio" name="buyerType" value="UMKM Olahan" class="accent-emerald-700"> UMKM
               </label>
-              <label class="border border-slate-200 text-slate-600 py-2 rounded-lg cursor-pointer hover:border-slate-300">
-                <input type="radio" name="buyer_type" class="hidden"> Pabrik / Industri
+              <label class="border border-slate-200 p-2 rounded-lg cursor-pointer hover:border-emerald-600 transition flex items-center justify-center gap-1.5">
+                <input type="radio" name="buyerType" value="Pabrik / Industri" class="accent-emerald-700"> Pabrik
               </label>
             </div>
           </div>
 
           <!-- Komoditas Input -->
           <div>
-            <label class="block text-xs font-bold text-slate-600 mb-1">Komoditas Yang Dibutuhkan</label>
-            <input type="text" placeholder="Misal: Tomat Ceri, Bawang Merah, Jeruk..." class="w-full text-sm bg-slate-50 border border-slate-200 rounded-lg px-3 py-2.5 focus:bg-white focus:outline-none focus:ring-2 focus:ring-emerald-600">
+            <label class="block text-xs font-bold text-slate-600 mb-1">Nama Komoditas Yang Dibutuhkan</label>
+            <input type="text" id="reqKomoditas" required placeholder="Contoh: Cabai Rawit, Selada, Tomat..." class="w-full text-sm bg-slate-50 border border-slate-200 rounded-lg px-3 py-2.5 focus:bg-white focus:outline-none focus:ring-2 focus:ring-emerald-600">
           </div>
 
-          <!-- Volume & Ritase -->
+          <!-- Volume & Kontak -->
           <div class="grid grid-cols-2 gap-3">
             <div>
-              <label class="block text-xs font-bold text-slate-600 mb-1">Estimasi Volume</label>
-              <select class="w-full text-sm bg-slate-50 border border-slate-200 rounded-lg px-3 py-2.5 focus:bg-white focus:outline-none focus:ring-2 focus:ring-emerald-600 text-slate-700">
-                <option>50 - 200 Kg / Minggu</option>
-                <option>200 - 1.000 Kg / Minggu</option>
-                <option>> 1 Ton (Partai Besar)</option>
-              </select>
+              <label class="block text-xs font-bold text-slate-600 mb-1">Volume Kebutuhan</label>
+              <input type="number" id="reqVolume" required min="10" placeholder="Misal: 50 (Kg)" class="w-full text-sm bg-slate-50 border border-slate-200 rounded-lg px-3 py-2.5 focus:bg-white focus:outline-none focus:ring-2 focus:ring-emerald-600">
             </div>
             <div>
-              <label class="block text-xs font-bold text-slate-600 mb-1">Lokasi Pengiriman</label>
-              <input type="text" placeholder="Kota / Kabupaten" class="w-full text-sm bg-slate-50 border border-slate-200 rounded-lg px-3 py-2.5 focus:bg-white focus:outline-none focus:ring-2 focus:ring-emerald-600">
+              <label class="block text-xs font-bold text-slate-600 mb-1">No. WhatsApp Bisnis</label>
+              <input type="tel" id="reqKontak" required placeholder="08xxxxxxxx" class="w-full text-sm bg-slate-50 border border-slate-200 rounded-lg px-3 py-2.5 focus:bg-white focus:outline-none focus:ring-2 focus:ring-emerald-600">
             </div>
           </div>
 
-          <button type="button" class="w-full bg-slate-900 hover:bg-slate-800 text-white font-bold text-sm py-3 rounded-xl transition flex items-center justify-center gap-2 mt-2">
-            Temukan Petani Yang Siap Kirim &rarr;
+          <button type="submit" class="w-full bg-slate-900 hover:bg-slate-800 text-white font-bold text-sm py-3 rounded-xl transition flex items-center justify-center gap-2 mt-2">
+            Kirimkan Permintaan ke Petani &rarr;
           </button>
         </form>
 
         <p class="text-[11px] text-slate-400 text-center mt-3">
-          Tersedia fasilitas uji sampel panen & penagihan berkala (invoicing) untuk bisnis terverifikasi.
+          Permintaan langsung diteruskan ke dasbor petani terdekat yang memiliki stok aktif.
         </p>
       </div>
 
@@ -157,214 +155,527 @@
   <section id="kategori" class="border-y border-slate-200 bg-white py-8">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex items-center justify-between mb-4">
-        <h3 class="text-xs font-extrabold uppercase tracking-wider text-slate-500">Kategori Hasil Bumi Aktif</h3>
+        <h3 class="text-xs font-extrabold uppercase tracking-wider text-slate-500">Filter Cepat Komoditas</h3>
+        <span id="labelKategoriAktif" class="text-xs font-semibold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded">Menampilkan: Semua</span>
       </div>
-      <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-3">
-        <div class="p-3.5 rounded-xl border border-slate-200 bg-slate-50 hover:bg-emerald-50 hover:border-emerald-300 transition cursor-pointer flex items-center gap-3">
-          <span class="text-2xl">🥬</span>
-          <div>
-            <div class="text-sm font-bold text-slate-900 leading-tight">Hortikultura</div>
-            <div class="text-[11px] text-slate-500">42 Petani</div>
-          </div>
-        </div>
-        <div class="p-3.5 rounded-xl border border-slate-200 bg-slate-50 hover:bg-emerald-50 hover:border-emerald-300 transition cursor-pointer flex items-center gap-3">
-          <span class="text-2xl">🌶️</span>
-          <div>
-            <div class="text-sm font-bold text-slate-900 leading-tight">Cabai & Bumbu</div>
-            <div class="text-[11px] text-slate-500">88 Petani</div>
-          </div>
-        </div>
-        <div class="p-3.5 rounded-xl border border-slate-200 bg-slate-50 hover:bg-emerald-50 hover:border-emerald-300 transition cursor-pointer flex items-center gap-3">
-          <span class="text-2xl">🍊</span>
-          <div>
-            <div class="text-sm font-bold text-slate-900 leading-tight">Buah Segar</div>
-            <div class="text-[11px] text-slate-500">31 Petani</div>
-          </div>
-        </div>
-        <div class="p-3.5 rounded-xl border border-slate-200 bg-slate-50 hover:bg-emerald-50 hover:border-emerald-300 transition cursor-pointer flex items-center gap-3">
-          <span class="text-2xl">🥔</span>
-          <div>
-            <div class="text-sm font-bold text-slate-900 leading-tight">Umbi & Akar</div>
-            <div class="text-[11px] text-slate-500">19 Petani</div>
-          </div>
-        </div>
-        <div class="p-3.5 rounded-xl border border-slate-200 bg-slate-50 hover:bg-emerald-50 hover:border-emerald-300 transition cursor-pointer flex items-center gap-3">
-          <span class="text-2xl">🌾</span>
-          <div>
-            <div class="text-sm font-bold text-slate-900 leading-tight">Beras & Biji</div>
-            <div class="text-[11px] text-slate-500">64 Petani</div>
-          </div>
-        </div>
-        <div class="p-3.5 rounded-xl border border-slate-200 bg-slate-50 hover:bg-emerald-50 hover:border-emerald-300 transition cursor-pointer flex items-center gap-3">
-          <span class="text-2xl">🌱</span>
-          <div>
-            <div class="text-sm font-bold text-slate-900 leading-tight">Organik Hijau</div>
-            <div class="text-[11px] text-slate-500">25 Petani</div>
-          </div>
-        </div>
+      <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-3" id="kategoriContainer">
+        <!-- Generasi Tombol Kategori Dinamis -->
       </div>
     </div>
   </section>
 
-  <!-- LIVE SUPPLY DIRECTORY (B2B Listing Layout) -->
+  <!-- LIVE SUPPLY DIRECTORY -->
   <section id="live-supply" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
     <div class="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-4">
       <div>
-        <div class="text-xs font-bold text-emerald-700 tracking-wider uppercase mb-1">Bursa Panen Langsung</div>
+        <div class="text-xs font-bold text-emerald-700 tracking-wider uppercase mb-1">Bursa Panen Aktif</div>
         <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900">Katalog Pasokan Terverifikasi</h2>
       </div>
-      <div class="flex items-center gap-2">
-        <button class="text-xs font-semibold px-3 py-2 bg-white border border-slate-200 rounded-lg text-slate-700 hover:bg-slate-100">Filter Panen Minggu Ini</button>
-        <button class="text-xs font-semibold px-3 py-2 bg-white border border-slate-200 rounded-lg text-slate-700 hover:bg-slate-100">Urutkan Terdekat</button>
+      
+      <!-- Search Box & Filter Interaktif -->
+      <div class="flex flex-wrap items-center gap-3">
+        <div class="relative">
+          <input type="text" id="inputPencarian" oninput="cariKomoditas()" placeholder="Cari komoditas atau daerah..." class="text-xs bg-white border border-slate-300 rounded-lg pl-8 pr-3 py-2.5 w-60 focus:outline-none focus:ring-2 focus:ring-emerald-600">
+          <svg class="w-4 h-4 text-slate-400 absolute left-2.5 top-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+        </div>
+        <button onclick="filterStatus('Siap Distribusi Harian')" class="text-xs font-semibold px-3 py-2.5 bg-white border border-slate-200 rounded-lg text-slate-700 hover:bg-slate-100 transition">Ready Stok</button>
+        <button onclick="filterStatus('Panen')" class="text-xs font-semibold px-3 py-2.5 bg-white border border-slate-200 rounded-lg text-slate-700 hover:bg-slate-100 transition">Akan Panen</button>
+        <button onclick="resetFilter()" class="text-xs font-semibold px-3 py-2.5 bg-slate-100 text-slate-600 hover:bg-slate-200 rounded-lg transition">Reset</button>
       </div>
     </div>
 
-    <!-- Listings Grid (Gaya B2B Catalog) -->
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+    <!-- Grid Katalog Komoditas -->
+    <div id="katalogGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <!-- Diisi Otomatis oleh JavaScript -->
+    </div>
 
-      <!-- Item 1 -->
-      <div class="bg-white border border-slate-200 rounded-xl overflow-hidden hover:border-slate-300 transition shadow-sm">
-        <div class="p-5 border-b border-slate-100">
-          <div class="flex items-start justify-between">
-            <span class="bg-amber-100 text-amber-900 text-[11px] font-bold px-2 py-0.5 rounded">Panen: 3 Hari Kedepan</span>
-            <span class="text-xs text-slate-400 font-medium">ID: TN-TAB01</span>
-          </div>
-          <h3 class="text-lg font-bold text-slate-900 mt-2">Cabai Rawit Merah (Ori 212)</h3>
-          <p class="text-xs text-slate-500">Kec. Baturiti, Tabanan • Gapoktan Subak Batur</p>
-        </div>
-        <div class="px-5 py-4 bg-slate-50/70 grid grid-cols-2 gap-2 text-xs">
-          <div>
-            <span class="text-slate-400 block">Kapasitas Panen</span>
-            <span class="font-bold text-slate-800 text-sm">± 1,2 Ton</span>
-          </div>
-          <div>
-            <span class="text-slate-400 block">Min. Pemesanan (MOQ)</span>
-            <span class="font-bold text-slate-800 text-sm">25 Kg</span>
-          </div>
-        </div>
-        <div class="p-5 flex items-center justify-between border-t border-slate-100">
-          <div>
-            <span class="text-[11px] text-slate-400 block">Harga Dasar Lahan</span>
-            <span class="text-lg font-black text-emerald-800">Rp 34.000<span class="text-xs font-normal text-slate-500">/kg</span></span>
-          </div>
-          <button class="bg-slate-900 hover:bg-slate-800 text-white text-xs font-bold px-4 py-2 rounded-lg transition">
-            Minta Sampel / PO
-          </button>
-        </div>
-      </div>
-
-      <!-- Item 2 -->
-      <div class="bg-white border border-slate-200 rounded-xl overflow-hidden hover:border-slate-300 transition shadow-sm">
-        <div class="p-5 border-b border-slate-100">
-          <div class="flex items-start justify-between">
-            <span class="bg-emerald-100 text-emerald-900 text-[11px] font-bold px-2 py-0.5 rounded">Siap Distribusi Harian</span>
-            <span class="text-xs text-slate-400 font-medium">ID: TN-BGL09</span>
-          </div>
-          <h3 class="text-lg font-bold text-slate-900 mt-2">Selada Romaine & Butterhead</h3>
-          <p class="text-xs text-slate-500">Pancasari, Sukasada • Farm Hidroponik Lestari</p>
-        </div>
-        <div class="px-5 py-4 bg-slate-50/70 grid grid-cols-2 gap-2 text-xs">
-          <div>
-            <span class="text-slate-400 block">Kapasitas Panen</span>
-            <span class="font-bold text-slate-800 text-sm">200 Kg / Hari</span>
-          </div>
-          <div>
-            <span class="text-slate-400 block">Min. Pemesanan (MOQ)</span>
-            <span class="font-bold text-slate-800 text-sm">10 Kg</span>
-          </div>
-        </div>
-        <div class="p-5 flex items-center justify-between border-t border-slate-100">
-          <div>
-            <span class="text-[11px] text-slate-400 block">Harga Dasar Lahan</span>
-            <span class="text-lg font-black text-emerald-800">Rp 16.500<span class="text-xs font-normal text-slate-500">/kg</span></span>
-          </div>
-          <button class="bg-slate-900 hover:bg-slate-800 text-white text-xs font-bold px-4 py-2 rounded-lg transition">
-            Minta Sampel / PO
-          </button>
-        </div>
-      </div>
-
-      <!-- Item 3 -->
-      <div class="bg-white border border-slate-200 rounded-xl overflow-hidden hover:border-slate-300 transition shadow-sm">
-        <div class="p-5 border-b border-slate-100">
-          <div class="flex items-start justify-between">
-            <span class="bg-blue-100 text-blue-900 text-[11px] font-bold px-2 py-0.5 rounded">Siap Kontrak Pabrik</span>
-            <span class="text-xs text-slate-400 font-medium">ID: TN-KNT04</span>
-          </div>
-          <h3 class="text-lg font-bold text-slate-900 mt-2">Jeruk Siam Manis Grade AB</h3>
-          <p class="text-xs text-slate-500">Kintamani, Bangli • Asosiasi Petani Jeruk</p>
-        </div>
-        <div class="px-5 py-4 bg-slate-50/70 grid grid-cols-2 gap-2 text-xs">
-          <div>
-            <span class="text-slate-400 block">Kapasitas Panen</span>
-            <span class="font-bold text-slate-800 text-sm">8 Ton (Raya)</span>
-          </div>
-          <div>
-            <span class="text-slate-400 block">Min. Pemesanan (MOQ)</span>
-            <span class="font-bold text-slate-800 text-sm">500 Kg</span>
-          </div>
-        </div>
-        <div class="p-5 flex items-center justify-between border-t border-slate-100">
-          <div>
-            <span class="text-[11px] text-slate-400 block">Harga Dasar Lahan</span>
-            <span class="text-lg font-black text-emerald-800">Rp 8.000<span class="text-xs font-normal text-slate-500">/kg</span></span>
-          </div>
-          <button class="bg-slate-900 hover:bg-slate-800 text-white text-xs font-bold px-4 py-2 rounded-lg transition">
-            Minta Sampel / PO
-          </button>
-        </div>
-      </div>
-
+    <!-- Tampilan Kosong Jika Tidak Ada Hasil -->
+    <div id="pesanKosong" class="hidden text-center py-16 bg-white border border-dashed border-slate-300 rounded-2xl">
+      <p class="text-slate-500 font-medium text-sm">Tidak ada komoditas hasil panen yang sesuai dengan pencarian.</p>
+      <button onclick="resetFilter()" class="mt-3 text-xs font-bold text-emerald-700 hover:underline">Reset Semua Filter</button>
     </div>
   </section>
 
-  <!-- SKEMA KERJASAMA (HOW IT WORKS FOR B2B) -->
+  <!-- SKEMA KERJASAMA -->
   <section id="kontrak" class="bg-slate-900 text-white py-16">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="max-w-2xl mb-12">
-        <p class="text-xs font-bold text-emerald-400 uppercase tracking-widest">Model Transaksi Tanpa Spekulan</p>
-        <h2 class="text-3xl font-extrabold mt-2">Cara Kerja Ekosistem TaniHubung</h2>
+        <p class="text-xs font-bold text-emerald-400 uppercase tracking-widest">Model Transaksi Bebas Spekulan</p>
+        <h2 class="text-3xl font-extrabold mt-2">Standar Distribusi TaniHubung</h2>
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-        <div class="space-y-3">
-          <div class="text-emerald-400 font-mono text-sm">01 / MATCHING</div>
-          <h4 class="text-lg font-bold">Koneksi Berdasarkan Kebutuhan</h4>
+        <div class="space-y-3 p-5 rounded-xl bg-slate-800/40 border border-slate-800">
+          <div class="text-emerald-400 font-mono text-sm font-bold">01 / VALIDASI MUTU</div>
+          <h4 class="text-lg font-bold">Pemeriksaan di Sentra Tani</h4>
           <p class="text-sm text-slate-400 leading-relaxed">
-            Resto atau pabrik menentukan spesifikasi panen yang diinginkan (grade, varietas, kadar air), sistem mencocokkannya ke kelompok tani terdekat.
+            Sortir standar Grade A/B dan pengemasan berventilasi dilakukan langsung di kelompok tani sebelum dikirim, menjaga kesegaran saat sampai di dapur usaha Anda.
           </p>
         </div>
 
-        <div class="space-y-3">
-          <div class="text-emerald-400 font-mono text-sm">02 / QUALITY CONTROL</div>
-          <h4 class="text-lg font-bold">Sortir & Standarisasi Lahan</h4>
+        <div class="space-y-3 p-5 rounded-xl bg-slate-800/40 border border-slate-800">
+          <div class="text-emerald-400 font-mono text-sm font-bold">02 / PENGADAAN TERJADWAL</div>
+          <h4 class="text-lg font-bold">Purchase Order (PO) Fleksibel</h4>
           <p class="text-sm text-slate-400 leading-relaxed">
-            Pemeriksaan mutu dilakukan langsung di pos pengumpulan tani sebelum muat logistik, mencegah penyusutan dan retur di dapur pembeli.
+            Mendukung pemesanan rutin 2-3 kali seminggu untuk restoran, atau pengiriman tonase bulanan langsung ke pabrik pengolahan makanan.
           </p>
         </div>
 
-        <div class="space-y-3">
-          <div class="text-emerald-400 font-mono text-sm">03 / SETTLEMENT</div>
-          <h4 class="text-lg font-bold">Pembayaran Adil & Terjadwal</h4>
+        <div class="space-y-3 p-5 rounded-xl bg-slate-800/40 border border-slate-800">
+          <div class="text-emerald-400 font-mono text-sm font-bold">03 / HARGA ADIL & TRANSPARAN</div>
+          <h4 class="text-lg font-bold">Pencairan Utuh Tanpa Broker</h4>
           <p class="text-sm text-slate-400 leading-relaxed">
-            Petani menerima pencairan langsung tanpa potongan spekulatif, sementara bisnis pembeli menikmati opsi pembayaran tempo (term of payment).
+            Harga beli langsung masuk ke kas kelompok tani/petani terdaftar, sementara mitra bisnis mendapatkan faktur resmi (invoice) yang dapat diaudit.
           </p>
         </div>
       </div>
     </div>
   </section>
+
+  <!-- MODAL TRANSAKSI / PESAN SAMPEL PO -->
+  <div id="modalPO" class="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-sm hidden flex items-center justify-center p-4">
+    <div class="bg-white rounded-2xl max-w-md w-full p-6 shadow-2xl fade-in relative border border-slate-100">
+      <button onclick="tutupModalPO()" class="absolute top-4 right-4 text-slate-400 hover:text-slate-600 font-bold text-lg">&times;</button>
+      
+      <div class="flex items-center gap-2 mb-2">
+        <span class="text-xs font-bold text-emerald-800 bg-emerald-50 px-2 py-0.5 rounded">Form Pemesanan</span>
+        <span id="modalKomoditasKode" class="text-xs text-slate-400"></span>
+      </div>
+
+      <h3 id="modalKomoditasNama" class="text-xl font-extrabold text-slate-900 mb-1">Nama Produk</h3>
+      <p id="modalKomoditasPetani" class="text-xs text-slate-500 mb-4">Lokasi</p>
+
+      <form id="formKalkulasiPO" onsubmit="konfirmasiPesanan(event)" class="space-y-3.5">
+        <div class="bg-slate-50 p-3 rounded-xl border border-slate-200/80 flex justify-between items-center text-sm">
+          <span class="text-slate-600">Harga Lahan:</span>
+          <span id="modalKomoditasHargaText" class="font-extrabold text-emerald-800">Rp 0 / kg</span>
+        </div>
+
+        <div>
+          <label class="block text-xs font-bold text-slate-700 mb-1">Jumlah Pemesanan (Kg)</label>
+          <input type="number" id="inputKuantitasKg" required min="1" oninput="hitungTotalHarga()" class="w-full text-sm bg-slate-50 border border-slate-200 rounded-lg px-3 py-2.5 focus:bg-white focus:ring-2 focus:ring-emerald-600 focus:outline-none">
+          <span id="modalMoqInfo" class="text-[11px] text-amber-700 mt-1 block"></span>
+        </div>
+
+        <div>
+          <label class="block text-xs font-bold text-slate-700 mb-1">Nama Usaha / Pemesan</label>
+          <input type="text" id="inputNamaUsaha" required placeholder="Contoh: RM Sederhana / Warung Pojok" class="w-full text-sm bg-slate-50 border border-slate-200 rounded-lg px-3 py-2.5 focus:bg-white focus:ring-2 focus:ring-emerald-600 focus:outline-none">
+        </div>
+
+        <div>
+          <label class="block text-xs font-bold text-slate-700 mb-1">WhatsApp Pemesan</label>
+          <input type="tel" id="inputHpUsaha" required placeholder="08xxxxxxxxxx" class="w-full text-sm bg-slate-50 border border-slate-200 rounded-lg px-3 py-2.5 focus:bg-white focus:ring-2 focus:ring-emerald-600 focus:outline-none">
+        </div>
+
+        <div class="pt-3 border-t border-slate-100 flex justify-between items-center">
+          <div>
+            <span class="text-[11px] text-slate-400 block">Estimasi Nilai Panen</span>
+            <span id="textTotalKalkulasi" class="text-lg font-black text-slate-900">Rp 0</span>
+          </div>
+          <button type="submit" class="bg-emerald-700 hover:bg-emerald-800 text-white font-bold text-xs px-5 py-2.5 rounded-xl transition shadow-md">
+            Konfirmasi PO
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- MODAL DAFTAR MITRA PETANI -->
+  <div id="modalMitra" class="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-sm hidden flex items-center justify-center p-4">
+    <div class="bg-white rounded-2xl max-w-lg w-full p-6 shadow-2xl fade-in relative border border-slate-100">
+      <button onclick="tutupModalMitra()" class="absolute top-4 right-4 text-slate-400 hover:text-slate-600 font-bold text-lg">&times;</button>
+      
+      <div class="mb-4">
+        <h3 class="text-lg font-bold text-slate-900">Daftarkan Hasil Panen Baru</h3>
+        <p class="text-xs text-slate-500">Data ini akan langsung tampil di direktori bursa pasokan TaniHubung.</p>
+      </div>
+
+      <form id="formTambahPanen" onsubmit="tambahKomoditasBaru(event)" class="space-y-3 text-xs">
+        <div>
+          <label class="block font-bold text-slate-700 mb-1">Nama Komoditas & Varietas</label>
+          <input type="text" id="tambahNama" required placeholder="Contoh: Kubis Putih Segar" class="w-full bg-slate-50 border border-slate-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-600">
+        </div>
+
+        <div class="grid grid-cols-2 gap-3">
+          <div>
+            <label class="block font-bold text-slate-700 mb-1">Kategori</label>
+            <select id="tambahKategori" class="w-full bg-slate-50 border border-slate-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-600">
+              <option value="Hortikultura">Hortikultura</option>
+              <option value="Cabai & Bumbu">Cabai & Bumbu</option>
+              <option value="Buah Segar">Buah Segar</option>
+              <option value="Umbi & Akar">Umbi & Akar</option>
+              <option value="Beras & Biji">Beras & Biji</option>
+              <option value="Organik Hijau">Organik Hijau</option>
+            </select>
+          </div>
+          <div>
+            <label class="block font-bold text-slate-700 mb-1">Status Ketersediaan</label>
+            <select id="tambahStatus" class="w-full bg-slate-50 border border-slate-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-600">
+              <option value="Siap Distribusi Harian">Siap Distribusi Harian</option>
+              <option value="Panen: 2-3 Hari Kedepan">Panen: 2-3 Hari Kedepan</option>
+              <option value="Siap Kontrak Pabrik">Siap Kontrak Pabrik</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-2 gap-3">
+          <div>
+            <label class="block font-bold text-slate-700 mb-1">Lokasi Kebun / Daerah</label>
+            <input type="text" id="tambahLokasi" required placeholder="Kecamatan, Kabupaten" class="w-full bg-slate-50 border border-slate-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-600">
+          </div>
+          <div>
+            <label class="block font-bold text-slate-700 mb-1">Nama Petani / Kelompok Tani</label>
+            <input type="text" id="tambahPetani" required placeholder="Gapoktan Sejahtera" class="w-full bg-slate-50 border border-slate-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-600">
+          </div>
+        </div>
+
+        <div class="grid grid-cols-3 gap-3">
+          <div>
+            <label class="block font-bold text-slate-700 mb-1">Harga / Kg (Rp)</label>
+            <input type="number" id="tambahHarga" required min="500" placeholder="12000" class="w-full bg-slate-50 border border-slate-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-600">
+          </div>
+          <div>
+            <label class="block font-bold text-slate-700 mb-1">Kapasitas Panen</label>
+            <input type="text" id="tambahKapasitas" required placeholder="500 Kg" class="w-full bg-slate-50 border border-slate-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-600">
+          </div>
+          <div>
+            <label class="block font-bold text-slate-700 mb-1">Min. Order (Kg)</label>
+            <input type="number" id="tambahMoq" required min="1" placeholder="20" class="w-full bg-slate-50 border border-slate-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-600">
+          </div>
+        </div>
+
+        <button type="submit" class="w-full bg-emerald-700 hover:bg-emerald-800 text-white font-bold py-2.5 rounded-lg text-sm transition mt-2">
+          Tayangkan Komoditas ke Bursa
+        </button>
+      </form>
+    </div>
+  </div>
 
   <!-- FOOTER -->
   <footer class="bg-slate-950 text-slate-400 py-10 text-xs">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row justify-between items-center gap-4">
       <p>&copy; 2026 TaniHubung Platform. Arsitektur Distribusi Hasil Tani Terbuka.</p>
       <div class="flex gap-6">
-        <a href="#" class="hover:text-white">Syarat Mitra Tani</a>
-        <a href="#" class="hover:text-white">Standar Mutu B2B</a>
-        <a href="#" class="hover:text-white">Kebijakan Privasi</a>
+        <a href="#kategori" class="hover:text-white">Kategori Komoditas</a>
+        <a href="#kontrak" class="hover:text-white">Standar QC B2B</a>
       </div>
     </div>
   </footer>
+
+  <!-- JAVASCRIPT: ENGINE & DATABASE DINAMIS -->
+  <script>
+    // 1. DATA MASTER AWAL KOMODITAS
+    let dataKomoditas = [
+      {
+        id: "TN-TAB01",
+        nama: "Cabai Rawit Merah (Ori 212)",
+        kategori: "Cabai & Bumbu",
+        lokasi: "Kec. Baturiti, Tabanan",
+        petani: "Gapoktan Subak Batur",
+        kapasitas: "1.200 Kg",
+        moq: 25,
+        harga: 34000,
+        status: "Panen: 3 Hari Kedepan",
+        statusColor: "bg-amber-100 text-amber-900"
+      },
+      {
+        id: "TN-BGL09",
+        nama: "Selada Romaine & Butterhead",
+        kategori: "Organik Hijau",
+        lokasi: "Pancasari, Sukasada",
+        petani: "Farm Hidroponik Lestari",
+        kapasitas: "200 Kg / Hari",
+        moq: 10,
+        harga: 16500,
+        status: "Siap Distribusi Harian",
+        statusColor: "bg-emerald-100 text-emerald-900"
+      },
+      {
+        id: "TN-KNT04",
+        nama: "Jeruk Siam Manis Grade AB",
+        kategori: "Buah Segar",
+        lokasi: "Kintamani, Bangli",
+        petani: "Asosiasi Petani Jeruk Kintamani",
+        kapasitas: "8.000 Kg (Panen Raya)",
+        moq: 200,
+        harga: 8500,
+        status: "Siap Kontrak Pabrik",
+        statusColor: "bg-blue-100 text-blue-900"
+      },
+      {
+        id: "TN-BDG02",
+        nama: "Tomat Beef Grade A Super",
+        kategori: "Hortikultura",
+        lokasi: "Candi Kuning, Bedugul",
+        petani: "Kelompok Tani Subak Abian",
+        kapasitas: "3.500 Kg",
+        moq: 30,
+        harga: 9000,
+        status: "Panen: Besok Pagi",
+        statusColor: "bg-amber-100 text-amber-900"
+      },
+      {
+        id: "TN-KLK08",
+        nama: "Bawang Merah Varietas Bima",
+        kategori: "Cabai & Bumbu",
+        lokasi: "Songan, Kintamani",
+        petani: "Pak Nyoman Suka Arsana",
+        kapasitas: "2.000 Kg (Kering Simpan)",
+        moq: 50,
+        harga: 28000,
+        status: "Siap Distribusi Harian",
+        statusColor: "bg-emerald-100 text-emerald-900"
+      },
+      {
+        id: "TN-GYR05",
+        nama: "Beras Merah Organik Jatiluwih",
+        kategori: "Beras & Biji",
+        lokasi: "Penebel, Tabanan",
+        petani: "Koperasi Tani Jatiluwih",
+        kapasitas: "5.000 Kg",
+        moq: 25,
+        harga: 19500,
+        status: "Siap Kontrak Pabrik",
+        statusColor: "bg-blue-100 text-blue-900"
+      }
+    ];
+
+    const kategoriList = [
+      { nama: "Hortikultura", icon: "🥬" },
+      { nama: "Cabai & Bumbu", icon: "🌶️" },
+      { nama: "Buah Segar", icon: "🍊" },
+      { nama: "Umbi & Akar", icon: "🥔" },
+      { nama: "Beras & Biji", icon: "🌾" },
+      { nama: "Organik Hijau", icon: "🌱" }
+    ];
+
+    let kategoriAktif = "Semua";
+    let statusFilterAktif = "";
+    let itemTerpilihPO = null;
+
+    // 2. INITIAL RENDER
+    window.addEventListener('DOMContentLoaded', () => {
+      renderKategoriList();
+      renderKatalog(dataKomoditas);
+      perbaruiMetrik();
+    });
+
+    // 3. RENDER KATEGORI
+    function renderKategoriList() {
+      const container = document.getElementById('kategoriContainer');
+      container.innerHTML = "";
+      kategoriList.forEach(k => {
+        const jumlah = dataKomoditas.filter(item => item.kategori === k.nama).length;
+        const div = document.createElement('div');
+        div.className = "p-3.5 rounded-xl border border-slate-200 bg-slate-50 hover:bg-emerald-50 hover:border-emerald-300 transition cursor-pointer flex items-center gap-3";
+        div.onclick = () => filterKategori(k.nama);
+        div.innerHTML = `
+          <span class="text-2xl">${k.icon}</span>
+          <div>
+            <div class="text-sm font-bold text-slate-900 leading-tight">${k.nama}</div>
+            <div class="text-[11px] text-slate-500">${jumlah} Mitra Panen</div>
+          </div>
+        `;
+        container.appendChild(div);
+      });
+    }
+
+    // 4. RENDER DAFTAR PRODUK (KATALOG)
+    function renderKatalog(list) {
+      const grid = document.getElementById('katalogGrid');
+      const pesanKosong = document.getElementById('pesanKosong');
+      grid.innerHTML = "";
+
+      if (list.length === 0) {
+        pesanKosong.classList.remove('hidden');
+        return;
+      } else {
+        pesanKosong.classList.add('hidden');
+      }
+
+      list.forEach(item => {
+        const card = document.createElement('div');
+        card.className = "bg-white border border-slate-200 rounded-xl overflow-hidden hover:border-slate-300 transition shadow-sm fade-in flex flex-col justify-between";
+        card.innerHTML = `
+          <div>
+            <div class="p-5 border-b border-slate-100">
+              <div class="flex items-start justify-between gap-2">
+                <span class="${item.statusColor || 'bg-emerald-100 text-emerald-900'} text-[11px] font-bold px-2.5 py-0.5 rounded">${item.status}</span>
+                <span class="text-xs text-slate-400 font-medium">${item.id}</span>
+              </div>
+              <h3 class="text-lg font-bold text-slate-900 mt-2.5 leading-snug">${item.nama}</h3>
+              <p class="text-xs text-slate-500 mt-0.5">${item.lokasi} • <span class="text-slate-700 font-medium">${item.petani}</span></p>
+            </div>
+            <div class="px-5 py-4 bg-slate-50/70 grid grid-cols-2 gap-2 text-xs">
+              <div>
+                <span class="text-slate-400 block">Kapasitas Panen</span>
+                <span class="font-bold text-slate-800 text-sm">${item.kapasitas}</span>
+              </div>
+              <div>
+                <span class="text-slate-400 block">Min. Order (MOQ)</span>
+                <span class="font-bold text-slate-800 text-sm">${item.moq} Kg</span>
+              </div>
+            </div>
+          </div>
+          <div class="p-5 flex items-center justify-between border-t border-slate-100 mt-auto">
+            <div>
+              <span class="text-[11px] text-slate-400 block">Harga Lahan Bersih</span>
+              <span class="text-lg font-black text-emerald-800">Rp ${item.harga.toLocaleString('id-ID')}<span class="text-xs font-normal text-slate-500">/kg</span></span>
+            </div>
+            <button onclick="bukaModalPO('${item.id}')" class="bg-slate-900 hover:bg-slate-800 text-white text-xs font-bold px-4 py-2.5 rounded-lg transition shadow-sm">
+              Minta Sampel / PO
+            </button>
+          </div>
+        `;
+        grid.appendChild(card);
+      });
+    }
+
+    // 5. PENCARIAN & FILTER
+    function cariKomoditas() {
+      const keyword = document.getElementById('inputPencarian').value.toLowerCase().trim();
+      let hasil = dataKomoditas.filter(i => {
+        const cocokKata = i.nama.toLowerCase().includes(keyword) || 
+                          i.lokasi.toLowerCase().includes(keyword) || 
+                          i.petani.toLowerCase().includes(keyword);
+        const cocokKategori = kategoriAktif === "Semua" || i.kategori === kategoriAktif;
+        const cocokStatus = !statusFilterAktif || i.status.toLowerCase().includes(statusFilterAktif.toLowerCase());
+        return cocokKata && cocokKategori && cocokStatus;
+      });
+      renderKatalog(hasil);
+    }
+
+    function filterKategori(namaKategori) {
+      kategoriAktif = namaKategori;
+      document.getElementById('labelKategoriAktif').innerText = `Menampilkan: ${namaKategori}`;
+      cariKomoditas();
+      scrollToSection('live-supply');
+    }
+
+    function filterStatus(status) {
+      statusFilterAktif = status;
+      cariKomoditas();
+    }
+
+    function resetFilter() {
+      kategoriAktif = "Semua";
+      statusFilterAktif = "";
+      document.getElementById('inputPencarian').value = "";
+      document.getElementById('labelKategoriAktif').innerText = "Menampilkan: Semua";
+      renderKatalog(dataKomoditas);
+    }
+
+    // 6. FORM DISPATCH HERO (PERMINTAAN B2B)
+    function tanganiPermintaanB2B(e) {
+      e.preventDefault();
+      const profilUsaha = document.querySelector('input[name="buyerType"]:checked').value;
+      const komoditas = document.getElementById('reqKomoditas').value;
+      const volume = document.getElementById('reqVolume').value;
+      const wa = document.getElementById('reqKontak').value;
+
+      alert(`✅ Permintaan Terkirim!\n\nProfil: ${profilUsaha}\nKebutuhan: ${volume} Kg ${komoditas}\nWhatsApp: ${wa}\n\nSistem TaniHubung sedang mencocokkan mitra kebun terdekat. Tim lapangan kami akan mengabari ketersediaan panen dalam waktu maksimal 15 menit via WhatsApp.`);
+      document.getElementById('formPermintaanB2B').reset();
+    }
+
+    // 7. MODAL PO / PESAN LANGSUNG
+    function bukaModalPO(id) {
+      const item = dataKomoditas.find(x => x.id === id);
+      if (!item) return;
+      itemTerpilihPO = item;
+
+      document.getElementById('modalKomoditasKode').innerText = item.id;
+      document.getElementById('modalKomoditasNama').innerText = item.nama;
+      document.getElementById('modalKomoditasPetani').innerText = `${item.lokasi} • Dikelola oleh ${item.petani}`;
+      document.getElementById('modalKomoditasHargaText').innerText = `Rp ${item.harga.toLocaleString('id-ID')} / kg`;
+      document.getElementById('modalMoqInfo').innerText = `*Pemesanan minimal untuk pasokan ini adalah ${item.moq} Kg.`;
+      
+      const inputQty = document.getElementById('inputKuantitasKg');
+      inputQty.min = item.moq;
+      inputQty.value = item.moq;
+
+      hitungTotalHarga();
+      document.getElementById('modalPO').classList.remove('hidden');
+    }
+
+    function hitungTotalHarga() {
+      if (!itemTerpilihPO) return;
+      const qty = parseFloat(document.getElementById('inputKuantitasKg').value) || 0;
+      const total = qty * itemTerpilihPO.harga;
+      document.getElementById('textTotalKalkulasi').innerText = `Rp ${total.toLocaleString('id-ID')}`;
+    }
+
+    function tutupModalPO() {
+      document.getElementById('modalPO').classList.add('hidden');
+      itemTerpilihPO = null;
+    }
+
+    function konfirmasiPesanan(e) {
+      e.preventDefault();
+      const qty = document.getElementById('inputKuantitasKg').value;
+      const usaha = document.getElementById('inputNamaUsaha').value;
+      const hp = document.getElementById('inputHpUsaha').value;
+
+      alert(`✅ Purchase Order Berhasil Dibuat!\n\nProduk: ${itemTerpilihPO.nama}\nJumlah: ${qty} Kg\nPemesan: ${usaha} (${hp})\nTotal Estimasi: Rp ${(qty * itemTerpilihPO.harga).toLocaleString('id-ID')}\n\nFaktur penagihan dan jadwal muat panen dari kebun telah dikirimkan ke kontak Anda.`);
+      tutupModalPO();
+      document.getElementById('formKalkulasiPO').reset();
+    }
+
+    // 8. MODAL TAMBAH MITRA / KOMODITAS BARU
+    function bukaModalMitra() {
+      document.getElementById('modalMitra').classList.remove('hidden');
+    }
+
+    function tutupModalMitra() {
+      document.getElementById('modalMitra').classList.add('hidden');
+    }
+
+    function tambahKomoditasBaru(e) {
+      e.preventDefault();
+      const nama = document.getElementById('tambahNama').value;
+      const kategori = document.getElementById('tambahKategori').value;
+      const status = document.getElementById('tambahStatus').value;
+      const lokasi = document.getElementById('tambahLokasi').value;
+      const petani = document.getElementById('tambahPetani').value;
+      const harga = parseInt(document.getElementById('tambahHarga').value);
+      const kapasitas = document.getElementById('tambahKapasitas').value;
+      const moq = parseInt(document.getElementById('tambahMoq').value);
+
+      const itemBaru = {
+        id: `TN-${Math.floor(1000 + Math.random() * 9000)}`,
+        nama,
+        kategori,
+        lokasi,
+        petani,
+        kapasitas,
+        moq,
+        harga,
+        status,
+        statusColor: status.includes('Harian') ? 'bg-emerald-100 text-emerald-900' : 'bg-amber-100 text-amber-900'
+      };
+
+      // Tambahkan ke data
+      dataKomoditas.unshift(itemBaru);
+      renderKategoriList();
+      resetFilter();
+      perbaruiMetrik();
+      tutupModalMitra();
+
+      alert(`🎉 Komoditas "${nama}" berhasil didaftarkan dan langsung tayang di bursa panen!`);
+      scrollToSection('live-supply');
+    }
+
+    function perbaruiMetrik() {
+      document.getElementById('counter-petani').innerText = `${dataKomoditas.length * 20}+`;
+    }
+
+    function scrollToSection(id) {
+      const el = document.getElementById(id);
+      if (el) el.scrollIntoView({ behavior: 'smooth' });
+    }
+  </script>
+
+</body>
+</html>
 
 </body>
 </html>
